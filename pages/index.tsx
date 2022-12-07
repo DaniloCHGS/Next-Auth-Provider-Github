@@ -14,26 +14,27 @@ export default function Home() {
         <div className={styles.auth}>
           <h1>Next Auth</h1>
 
-          <div className={styles.inputWrapper}>
-            <label htmlFor="">E-mail</label>
-            <input type="text" placeholder='exemple@mail.com' />
-          </div>
-
-          <div className={styles.inputWrapper}>
-            <label htmlFor="">Senha</label>
-            <input type="password" placeholder='******' />
-          </div>
-
-          <div className={styles.flex}>
+          <form action="">
             <div className={styles.inputWrapper}>
-              <button type='submit' className={styles.success}>Login</button>
+              <label htmlFor="">E-mail</label>
+              <input type="email" placeholder='exemple@mail.com' required />
             </div>
 
             <div className={styles.inputWrapper}>
-              <button type='submit' className={styles.github}>GitHub</button>
+              <label htmlFor="">Senha</label>
+              <input type="password" placeholder='******' required />
             </div>
-          </div>
 
+            <div className={styles.flex}>
+              <div className={styles.inputWrapper}>
+                <button type='submit' className={styles.success}>Login</button>
+              </div>
+
+              <div className={styles.inputWrapper}>
+                <button type='submit' className={styles.github}>GitHub</button>
+              </div>
+            </div>
+          </form>
 
         </div>
       </main>
