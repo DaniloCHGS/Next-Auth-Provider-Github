@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
@@ -9,8 +10,32 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1>App</h1>
+      <main className={styles.main}>
+        <div className={styles.auth}>
+          <h1>Next Auth</h1>
+
+          <div className={styles.inputWrapper}>
+            <label htmlFor="">E-mail</label>
+            <input type="text" placeholder='exemple@mail.com' />
+          </div>
+
+          <div className={styles.inputWrapper}>
+            <label htmlFor="">Senha</label>
+            <input type="password" placeholder='******' />
+          </div>
+
+          <div className={styles.flex}>
+            <div className={styles.inputWrapper}>
+              <button type='submit' className={styles.success}>Login</button>
+            </div>
+
+            <div className={styles.inputWrapper}>
+              <button type='submit' className={styles.github}>GitHub</button>
+            </div>
+          </div>
+
+
+        </div>
       </main>
     </div>
   )
