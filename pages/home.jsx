@@ -1,6 +1,8 @@
-import { getSession, signOut, useSession } from 'next-auth/react'
-import { GetServerSideProps } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
+import { GetServerSideProps } from 'next'
+import { getSession, signOut, useSession } from 'next-auth/react'
+import styles from '../styles/Home.module.css'
 
 export const Home = () => {
     const { data: session } = useSession()
@@ -10,9 +12,12 @@ export const Home = () => {
             <Head>
                 <title>Home - Github Provider Login</title>
             </Head>
-            <h1>{session?.user?.name}</h1>
-            <h2>{session?.user?.email}</h2>
-            <button onClick={() => { signOut() }}>Sair</button>
+            <main className={styles.main}>
+                <img src={session.user.image} className={styles.avatar} alt="" />
+                <h1>{session?.user?.name}</h1>
+                <h2>{session?.user?.email}</h2>
+                <button onClick={() => { signOut() }}>Sair</button>
+            </main>
         </div>
     )
 }

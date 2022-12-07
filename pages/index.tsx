@@ -3,8 +3,16 @@ import { GetServerSideProps } from 'next'
 import { signIn, getSession } from 'next-auth/react'
 
 import styles from '../styles/Login.module.css'
+import { FormEvent } from 'react'
 
 export default function Login() {
+
+  const onSubmitToAuth = (event: FormEvent) => {
+    event.preventDefault()
+
+    signIn('credentials')
+  }
+
   return (
     <div>
       <Head>
@@ -17,15 +25,15 @@ export default function Login() {
         <div className={styles.auth}>
           <h1>Next Auth</h1>
 
-          <form action="">
+          <form onSubmit={onSubmitToAuth}>
             <div className={styles.inputWrapper}>
               <label htmlFor="">E-mail</label>
-              <input type="email" placeholder='exemple@mail.com' />
+              <input name='email' type="email" placeholder='exemple@mail.com' />
             </div>
 
             <div className={styles.inputWrapper}>
               <label htmlFor="">Senha</label>
-              <input type="password" placeholder='******' />
+              <input name='password' type="password" placeholder='******' />
             </div>
 
             <div className={styles.flex}>
@@ -35,9 +43,8 @@ export default function Login() {
 
               <div className={styles.inputWrapper}>
                 <button
-                  type='button'
+                  type='submit'
                   className={styles.github}
-                  onClick={() => { signIn('github') }}
                 >
                   GitHub
                 </button>
@@ -53,7 +60,8 @@ export default function Login() {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context)
-
+  let { req } = context
+  
   if (session) {
     return {
       redirect: {
